@@ -6,20 +6,18 @@ function manageRound() {
     if (computerCounter === 5 || playerCounter === 5) {
         startRound()
     }
-    if (computerCounter < 5 && playerCounter < 5) {
-        const playerChoice = (document.querySelector("input").value).toLowerCase()
-        const computerChoice = getComputerChoice()
-        const results = compareChoices(computerChoice, playerChoice)
-        if (results === "player win") {
-            playerCounter = playerCounter + 1
-        } else if (results === "computer win") {
-            computerCounter = computerCounter + 1
-        }
-        const winner = checkWinner(computerCounter, playerCounter)
-        showResults(computerChoice, playerChoice, results, winner, computerCounter, playerCounter)
-        if (winner) {
-            removeResults()
-        }
+    const playerChoice = (document.querySelector("input").value).toLowerCase()
+    const computerChoice = getComputerChoice()
+    const results = compareChoices(computerChoice, playerChoice)
+    if (results === "player win") {
+        playerCounter = playerCounter + 1
+    } else if (results === "computer win") {
+        computerCounter = computerCounter + 1
+    }
+    const winner = checkWinner(computerCounter, playerCounter)
+    showResults(computerChoice, playerChoice, results, winner, computerCounter, playerCounter)
+    if (winner) {
+        removeResults()
     }
 }
 
@@ -45,7 +43,7 @@ function compareChoices(computerChoice, playerChoice) {
     } else if (playerChoice === "paper") {
         computerChoice === "rock" ? results = "player win" : results = "computer win" //scissors
     } else {
-        results = "choose rock paper or scissors you moron"
+        results = "choose rock paper or scissors"
     }
     return results
 }
@@ -78,6 +76,5 @@ function startRound() {
     document.querySelector("#winner").textContent = ""
     document.querySelector("#counter").textContent = `Computer ${computerCounter} - Player ${playerCounter}`
 }
-
 
 $button.addEventListener("click", manageRound)
