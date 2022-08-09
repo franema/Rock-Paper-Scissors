@@ -3,6 +3,9 @@ let computerCounter = 0
 let playerCounter = 0
 
 function manageRound() {
+    if (computerCounter === 5 || playerCounter === 5) {
+        startRound()
+    }
     if (computerCounter < 5 && playerCounter < 5) {
         const playerChoice = (document.querySelector("input").value).toLowerCase()
         const computerChoice = getComputerChoice()
@@ -13,9 +16,10 @@ function manageRound() {
             computerCounter = computerCounter + 1
         }
         const winner = checkWinner(computerCounter, playerCounter)
-        console.log(playerCounter)
-        console.log(computerCounter)
-        showResults(computerChoice, playerChoice, results, winner, computerCounter.playerCounter)
+        showResults(computerChoice, playerChoice, results, winner, computerCounter, playerCounter)
+        if (winner) {
+            removeResults()
+        }
     }
 }
 
@@ -54,11 +58,25 @@ function checkWinner(computerCounter, playerCounter) {
     }
 }
 
-function showResults(computerChoice, playerChoice, results, winner) {
+function showResults(computerChoice, playerChoice, results, winner, computerCounter, playerCounter) {
     document.querySelector("#computer-choice").textContent = computerChoice
     document.querySelector("#player-choice").textContent = playerChoice
     document.querySelector("#results").textContent = results
     document.querySelector("#winner").textContent = winner
+    document.querySelector("#counter").textContent = `Computer ${computerCounter} - Player ${playerCounter}`
+}
+
+function removeResults() {
+    document.querySelector("#computer-choice").textContent = ""
+    document.querySelector("#player-choice").textContent = ""
+    document.querySelector("#results").textContent = ""
+}
+
+function startRound() {
+    computerCounter = 0
+    playerCounter = 0
+    document.querySelector("#winner").textContent = ""
+    document.querySelector("#counter").textContent = `Computer ${computerCounter} - Player ${playerCounter}`
 }
 
 
