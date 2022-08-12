@@ -1,12 +1,13 @@
-const $button = document.querySelector("button");
+const $buttons = document.querySelectorAll("button");
 let computerCounter = 0;
 let playerCounter = 0;
 
-function manageRound() {
+function manageRound(e) {
     if (computerCounter === 5 || playerCounter === 5) {
         restartRound();
     }
-    const playerChoice = (document.querySelector("input").value).toLowerCase();
+    console.log(this.className)
+    const playerChoice = this.className
     const computerChoice = getComputerChoice();
     const results = compareChoices(computerChoice, playerChoice);
     if (results === "player win") {
@@ -57,8 +58,8 @@ function checkWinner(computerCounter, playerCounter) {
 }
 
 function showResults(computerChoice, playerChoice, results, winner, computerCounter, playerCounter) {
-    document.querySelector("#computer-choice").textContent = computerChoice;
-    document.querySelector("#player-choice").textContent = playerChoice;
+    document.querySelector("#computer-choice").textContent = `Computer chose: ${computerChoice}`;
+    document.querySelector("#player-choice").textContent = `Player chose: ${playerChoice}`;
     document.querySelector("#results").textContent = results;
     document.querySelector("#winner").textContent = winner;
     document.querySelector("#counter").textContent = `Computer ${computerCounter} - Player ${playerCounter}`;
@@ -77,4 +78,6 @@ function restartRound() {
     document.querySelector("#counter").textContent = `Computer ${computerCounter} - Player ${playerCounter}`;
 }
 
-$button.addEventListener("click", manageRound);
+$buttons.forEach(button => {
+    button.addEventListener("click", manageRound)
+})

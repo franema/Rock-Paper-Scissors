@@ -10,15 +10,20 @@
 <body>
     <div class="input-container">
         <label>Choose, rock, paper or scissors!</label>
-        <input type="text">
-        <button>Let's go!</button>
+        <div class="buttons">
+            <button class="rock">Rock</button>
+            <button class="paper">Paper</button>
+            <button class="scissors">Scissors</button>
+        </div>
     </div>
     <div class="results-container">
         <strong class="results" id="computer-choice"></strong>
         <strong class="results" id="player-choice"></strong>
         <strong class="results" id="results"></strong>
         <strong class="results" id="winner"></strong>
-        <strong class="results" id="counter">Computer 0 - Player 0</strong>
+        <div class="counter-container">
+            <strong class="results" id="counter">Computer 0 - Player 0</strong>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
